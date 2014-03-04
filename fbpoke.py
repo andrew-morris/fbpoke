@@ -1,17 +1,12 @@
 #!/usr/bin/python
 
 from morris import mprint
-
-try:
-	import mechanize
-except:
-	print "[!] Error. Python Mechanize module not found"
-	exit()
-
-import time
+import mechanize
+import  time
 import os
 import cookielib
 import sys
+from time import gmtime, strftime
 
 FACEBOOK_USERNAME = ""
 FACEBOOK_PASSWORD = ""
@@ -29,7 +24,7 @@ browser.set_handle_redirect(True)
 browser.set_handle_referer(True)
 browser.set_handle_refresh(False)
 mprint.update("Requesting Facebook poke page to authenticate")
-browser.open("https://m.facebook.com/pokes")
+browser.open("http://m.facebook.com/pokes")
 browser._factory.is_html = True
 mprint.update("Filling username and password into fields")
 browser.select_form(nr=0)
@@ -42,7 +37,7 @@ mprint.update("Starting auto-poke loop")
 while True:
         try:
                 tempPokeCount = 0
-                pokepage = browser.open("https://m.facebook.com/pokes").read()
+                pokepage = browser.open("http://m.facebook.com/pokes").read()
                 browser._factory.is_html = True
                 for l in browser.links(): 
                         result = True
@@ -52,6 +47,9 @@ while True:
                                 tempPokeCount += 1
                                 totalPokes += 1
                                 mprint.update("Poked! Total Pokes: " + str(totalPokes))
+				f = open('poke.log', 'a')
+				f.write('Someone was poked at '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+'\n')
+				f.close()
                 if (tempPokeCount != 0 and delay > 1): delay /= 2
                 if (tempPokeCount == 0 and delay < MAX_DELAY): delay *= 2
         except Exception as e:

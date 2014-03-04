@@ -3,7 +3,7 @@ fbpoke
 
 ## Summary
 
-A really sad script that checks your Facebook for pokes and automatically pokes people back. Code-wise, theres a lot of jagaloonery going on here. I'm passing a fake user-agent so facebook allows the connection, and I'm not using the facebook API, since they don't have a poke method. Also, you've got to store your creds in plaintext. Sorry bout that.
+A really sad script that checks your Facebook for pokes and automatically pokes people back. Code-wise, theres a lot of jagaloonery going on here. I'm passing a fake user-agent so facebook allows the connection, and I'm not using the facebook API, since they don't have a poke method. Also, you've got to store your creds in plaintext. Sorry bout that. Also, I 100% stole some of this code from the internet, and I'm really sorry, but it was so long ago and I have no idea where I got it from. Whoever you are, stranger, I owe you a beer and an apology.
 
 ## Usage
 
@@ -33,7 +33,7 @@ $ python fbpoke.py
 
 ## Todo
 
-* Add logging
+* Add logging // DONE
 * Improve script so it logs/outputs poker's name
 * Maybe use OAuth since my method is horrible
 * Improve garbage collection. The script crashed after a few hours.
